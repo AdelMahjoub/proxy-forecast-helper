@@ -4,7 +4,7 @@
 
 **by**        ` https://proxy-forecast.glitch.me`
 
-The query params and the querystring are the same as the [draksky docs](https://darksky.net/dev/docs/forecast)
+The query params and the querystring are the same as the [darksky docs](https://darksky.net/dev/docs/forecast)
 
 ***expect*** the user should not provide his/her `dark sky key`
 
