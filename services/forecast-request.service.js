@@ -5,7 +5,7 @@ module.exports = function(forecastRequest, callback) {
   https.get(forecastRequest, darksky => {
 
     if(darksky.statusCode === 404) {
-      return callback({status: 404, error: 'bad request', request: forecastRequest});
+      return callback({status: 404, error: 'bad request'});
     }
 
     let data = '';

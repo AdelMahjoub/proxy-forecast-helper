@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const helmet = require('helmet');
 const nodeCache = require('node-cache');
 
 const forcastUrlBuilder = require('./utils/forecast-url-builder.util');
@@ -17,6 +16,11 @@ app.use((req, res, next) => {
 });
 
 app.get('*',(req, res, next) => {
+
+  let referer = req.headers['referer'];
+  if(!referer || !referer.includes(process.env.AUTHORIZED_REFERER)) {
+    return res.json({status: 500, error: 'Unauthorized'});
+  }
 
   let patt = /^\/favicon\.ico/;
   let params = req.params['0'];
