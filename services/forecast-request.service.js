@@ -4,6 +4,10 @@ module.exports = function(forecastRequest, callback) {
 
   https.get(forecastRequest, darksky => {
 
+    if(darksky.statusCode === 404) {
+      return callback({status: 404, error: 'bad request'});
+    }
+
     let data = '';
 
     darksky.setEncoding('utf8');
@@ -16,9 +20,5 @@ module.exports = function(forecastRequest, callback) {
       return callback(JSON.parse(data));
     });
 
-    darksky.on('error', (err) => {
-      return callback(JSON.parse(err));
-    });
-    
   });
 }
