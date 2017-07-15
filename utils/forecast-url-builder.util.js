@@ -14,6 +14,9 @@ module.exports = function(req) {
     queryParams = queryParams.replace('/forecast', '');
   }
 
-  return `${process.env.DARKSKY_URL}/${process.env.DARKSKY_KEY + queryParams + queryOptions}`;
+  return {
+    forecastUrl: `${process.env.DARKSKY_URL}/${process.env.DARKSKY_KEY + queryParams + queryOptions}`,
+    latLong: queryParams.replace('/', '')
+  }
   
 }
